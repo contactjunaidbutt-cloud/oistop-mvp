@@ -116,7 +116,14 @@ function loadState() {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) return initialState();
-    return { ...initialState(), ...JSON.parse(stored), toast: null };
+    return {
+      ...initialState(),
+      ...JSON.parse(stored),
+      screen: "welcome",
+      activeReminder: null,
+      snoozedReminder: null,
+      toast: null
+    };
   } catch {
     return initialState();
   }
@@ -530,7 +537,7 @@ function render() {
 }
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js?v=how-it-works").catch(() => {}));
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js?v=always-welcome").catch(() => {}));
 }
 
 render();

@@ -1,4 +1,4 @@
-const CACHE_NAME = "oistop-mvp-how-it-works-v1";
+const CACHE_NAME = "oistop-mvp-always-welcome-v1";
 const ASSETS = [
   "./",
   "./index.html",
