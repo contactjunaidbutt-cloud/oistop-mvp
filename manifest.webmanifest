@@ -1,0 +1,17 @@
+{
+  "name": "OiStop!",
+  "short_name": "OiStop!",
+  "description": "A cheeky personal departure checklist.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff8dc",
+  "theme_color": "#090909",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

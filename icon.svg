@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="OiStop app icon">
+  <rect width="512" height="512" rx="96" fill="#090909"/>
+  <circle cx="256" cy="256" r="184" fill="#ffd21f"/>
+  <path d="M98 119h316" stroke="#090909" stroke-width="34" stroke-linecap="round"/>
+  <path d="M116 292c0-51 28-86 69-86s69 35 69 86-28 86-69 86-69-35-69-86Zm45 0c0 28 9 45 24 45s24-17 24-45-9-45-24-45-24 17-24 45Zm123-80h47v162h-47V212Zm0-68h47v45h-47v-45Zm82 39c0-30 24-54 58-54s58 24 58 54-24 54-58 54-58-24-58-54Zm32 127 14-56h60l13 56v58h-87v-58Z" fill="#090909"/>
+</svg>
