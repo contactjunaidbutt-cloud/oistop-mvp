@@ -58,10 +58,10 @@ Suggested Vercel settings:
 
 - Framework preset: `Other`
 - Build command: `npm run build`
-- Output directory: `.`
+- Output directory: `public`
 - Install command: `npm install`
 
-The included `vercel.json` serves the single-page app and keeps the service worker from sticking to old cached versions during demos.
+The included `vercel.json` sets `outputDirectory` to `public`, serves the single-page app, and keeps the service worker from sticking to old cached versions during demos.
 
 ## Current MVP Scope
 
