@@ -31,9 +31,12 @@ body {
   min-height: 100svh;
   color: var(--ink);
   letter-spacing: 0;
+  display: grid;
+  place-items: stretch;
   background:
-    linear-gradient(135deg, rgba(9, 9, 9, 0.04) 25%, transparent 25%) 0 0 / 26px 26px,
-    linear-gradient(180deg, #fffef6 0%, var(--bg) 50%, #fff4b8 100%);
+    radial-gradient(circle at 50% -12%, rgba(255, 210, 31, 0.42), transparent 28rem),
+    linear-gradient(135deg, rgba(9, 9, 9, 0.05) 25%, transparent 25%) 0 0 / 26px 26px,
+    linear-gradient(180deg, #fffef6 0%, var(--bg) 54%, #fff4b8 100%);
 }
 
 button,
@@ -93,23 +96,138 @@ h3 {
   font-size: 12px;
 }
 
+#app {
+  width: 100%;
+  min-height: 100svh;
+}
+
+.phone-frame {
+  width: 100%;
+  min-height: 100svh;
+  background: var(--black);
+  position: relative;
+}
+
+.phone-speaker {
+  display: none;
+}
+
+.phone-screen {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  background:
+    linear-gradient(135deg, rgba(9, 9, 9, 0.035) 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(180deg, #fffef6 0%, var(--bg) 58%, #fff4b8 100%);
+}
+
+.phone-status {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(env(safe-area-inset-top) + 8px) 18px 5px;
+  color: var(--black);
+  font-size: 12px;
+  font-weight: 900;
+  flex: 0 0 auto;
+}
+
+.phone-indicators {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.signal-pill {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.signal-bars {
+  height: 13px;
+  display: inline-flex;
+  align-items: end;
+  gap: 2px;
+}
+
+.signal-bars i {
+  width: 3px;
+  display: block;
+  border-radius: 999px;
+  background: var(--black);
+}
+
+.signal-bars i:nth-child(1) {
+  height: 5px;
+}
+
+.signal-bars i:nth-child(2) {
+  height: 8px;
+}
+
+.signal-bars i:nth-child(3) {
+  height: 11px;
+}
+
+.battery {
+  width: 22px;
+  height: 11px;
+  border: 2px solid var(--black);
+  border-radius: 4px;
+  position: relative;
+}
+
+.battery::before {
+  content: "";
+  position: absolute;
+  inset: 2px 5px 2px 2px;
+  border-radius: 2px;
+  background: var(--black);
+}
+
+.battery::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 5px;
+  right: -5px;
+  top: 1px;
+  border-radius: 0 2px 2px 0;
+  background: var(--black);
+}
+
+.phone-home-indicator {
+  width: 132px;
+  height: 5px;
+  margin: auto auto 10px;
+  border-radius: 999px;
+  background: rgba(9, 9, 9, 0.82);
+  flex: 0 0 auto;
+}
+
 .screen {
-  width: min(1120px, 100%);
+  width: 100%;
   margin: 0 auto;
-  padding: 20px 16px 104px;
+  padding: 18px 16px 24px;
+  flex: 1 0 auto;
 }
 
 .screen.narrow {
-  width: min(760px, 100%);
+  width: 100%;
 }
 
 .hero-screen {
-  min-height: 100svh;
+  min-height: calc(100svh - 34px);
   display: grid;
   align-content: center;
   gap: 28px;
-  padding: 28px 20px;
+  padding: 20px 20px 28px;
   overflow: hidden;
+  flex: 1 0 auto;
 }
 
 .hero-copy,
@@ -122,7 +240,7 @@ h3 {
 .hero-art {
   display: grid;
   place-items: center;
-  min-height: 260px;
+  min-height: 245px;
   position: relative;
   overflow: hidden;
   border-radius: 26px;
@@ -150,8 +268,8 @@ h3 {
 }
 
 .logo-mark {
-  width: 128px;
-  height: 128px;
+  width: 116px;
+  height: 116px;
   display: grid;
   place-items: center;
   border-radius: 28px;
@@ -159,7 +277,7 @@ h3 {
   color: var(--yellow);
   border: 3px solid var(--yellow);
   box-shadow: 0 24px 60px rgba(9, 9, 9, 0.32);
-  font-size: 46px;
+  font-size: 42px;
   font-weight: 950;
   position: relative;
   z-index: 1;
@@ -193,8 +311,8 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: calc(env(safe-area-inset-top) + 10px) 16px 10px;
-  background: rgba(255, 248, 220, 0.9);
+  padding: 10px 16px 12px;
+  background: rgba(255, 248, 220, 0.94);
   border-bottom: 1px solid rgba(9, 9, 9, 0.12);
   backdrop-filter: blur(18px);
 }
@@ -256,6 +374,18 @@ h3 {
   color: var(--yellow);
   border: 2px solid var(--black);
   box-shadow: 0 12px 24px rgba(9, 9, 9, 0.2);
+}
+
+.button-row > .primary-btn,
+.button-row > .secondary-btn,
+.button-row > .ghost-btn,
+.hero-actions > .primary-btn,
+.hero-actions > .secondary-btn,
+.hero-actions > .ghost-btn,
+.card-actions > .primary-btn,
+.card-actions > .secondary-btn,
+.card-actions > .ghost-btn {
+  flex: 1 1 auto;
 }
 
 .secondary-btn {
@@ -656,7 +786,7 @@ h3 {
 }
 
 .reminder-overlay {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 100;
   display: grid;
@@ -709,10 +839,10 @@ h3 {
 }
 
 .toast {
-  position: fixed;
+  position: sticky;
   left: 16px;
   right: 16px;
-  bottom: 88px;
+  bottom: 84px;
   z-index: 120;
   width: min(520px, calc(100% - 32px));
   margin: 0 auto;
@@ -725,7 +855,7 @@ h3 {
 }
 
 .bottom-nav {
-  position: fixed;
+  position: sticky;
   left: 0;
   right: 0;
   bottom: 0;
@@ -737,7 +867,7 @@ h3 {
 }
 
 .nav-inner {
-  width: min(760px, 100%);
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -780,57 +910,77 @@ h3 {
   margin: 4px 0;
 }
 
-@media (min-width: 760px) {
-  .screen {
-    padding: 28px 24px 116px;
+@media (min-width: 560px) {
+  body {
+    min-height: 100svh;
+    place-items: center;
+    padding: 24px;
+    background:
+      radial-gradient(circle at 20% 12%, rgba(255, 210, 31, 0.34), transparent 18rem),
+      radial-gradient(circle at 78% 82%, rgba(9, 9, 9, 0.12), transparent 22rem),
+      linear-gradient(135deg, rgba(9, 9, 9, 0.07) 25%, transparent 25%) 0 0 / 28px 28px,
+      linear-gradient(180deg, #fffef6 0%, var(--bg) 52%, #fff2a6 100%);
   }
 
-  .hero-screen {
-    width: min(1120px, 100%);
-    margin: 0 auto;
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-    align-items: center;
-    gap: 44px;
+  #app {
+    width: min(430px, 100%);
+    min-height: 0;
+  }
+
+  .phone-frame {
+    height: min(912px, calc(100svh - 48px));
+    min-height: 0;
+    padding: 12px;
+    border-radius: 48px;
+    box-shadow:
+      0 36px 90px rgba(9, 9, 9, 0.36),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  }
+
+  .phone-speaker {
+    width: 82px;
+    height: 7px;
+    display: block;
+    position: absolute;
+    top: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    border-radius: 999px;
+    background: #1c1c1c;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  }
+
+  .phone-screen {
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    border-radius: 36px;
+    scrollbar-width: none;
+  }
+
+  .phone-screen::-webkit-scrollbar {
+    display: none;
+  }
+
+  .screen {
+    padding: 18px 16px 24px;
   }
 
   .hero-art {
-    min-height: 460px;
-    order: 2;
+    min-height: 245px;
   }
 
   h1 {
-    font-size: 68px;
+    font-size: 46px;
   }
 
   .lead {
-    font-size: 19px;
-  }
-
-  .card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .two-col {
-    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-    align-items: start;
-  }
-
-  .add-item-grid {
-    grid-template-columns: 58px minmax(0, 1fr) auto;
-  }
-
-  .add-item-grid .primary-btn {
-    grid-column: auto;
+    font-size: 17px;
   }
 
   .reminder-overlay {
-    place-items: center;
-  }
-}
-
-@media (min-width: 1040px) {
-  .card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    place-items: end center;
   }
 }
 

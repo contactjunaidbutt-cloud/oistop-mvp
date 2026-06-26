@@ -1,4 +1,4 @@
-const CACHE_NAME = "oistop-mvp-always-welcome-v1";
+const CACHE_NAME = "oistop-mvp-phone-ui-v1";
 const ASSETS = [
   "./",
   "./index.html",

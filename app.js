@@ -202,6 +202,21 @@ function toneLine(standard) {
   return standard;
 }
 
+function phoneStatusBar() {
+  return h(
+    "div",
+    { class: "phone-status", "aria-hidden": "true" },
+    h("span", { class: "phone-time", text: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }),
+    h(
+      "div",
+      { class: "phone-indicators" },
+      h("span", { class: "signal-pill", text: "5G" }),
+      h("span", { class: "signal-bars" }, h("i", {}), h("i", {}), h("i", {})),
+      h("span", { class: "battery" })
+    )
+  );
+}
+
 function appHeader() {
   return h(
     "header",
@@ -216,7 +231,21 @@ function bottomNav() {
 }
 
 function shell(content, hideChrome = false) {
-  return h("div", {}, hideChrome ? null : appHeader(), content, hideChrome ? null : bottomNav(), state.activeReminder ? ReminderOverlay() : null, state.toast ? h("div", { class: "toast", text: state.toast }) : null);
+  return h(
+    "div",
+    { class: `phone-frame ${hideChrome ? "welcome-frame" : ""}` },
+    h("div", { class: "phone-speaker", "aria-hidden": "true" }),
+    h(
+      "div",
+      { class: "phone-screen" },
+      phoneStatusBar(),
+      hideChrome ? null : appHeader(),
+      content,
+      hideChrome ? h("div", { class: "phone-home-indicator", "aria-hidden": "true" }) : bottomNav(),
+      state.activeReminder ? ReminderOverlay() : null,
+      state.toast ? h("div", { class: "toast", text: state.toast }) : null
+    )
+  );
 }
 
 function WelcomeScreen() {
@@ -537,7 +566,7 @@ function render() {
 }
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js?v=always-welcome").catch(() => {}));
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js?v=phone-ui").catch(() => {}));
 }
 
 render();
